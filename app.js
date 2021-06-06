@@ -1,17 +1,18 @@
-let leftImageElement=document.getElementById('left-image');
-let secondImageElement=document.getElementById('second-image');
-let rightImageElement=document.getElementById('right-image');
+'use srtict'
+let firstImageElement=document.getElementById('first-image');
+let thirdImageElement=document.getElementById('second-image');
+let secondImageElement=document.getElementById('third-image');
 
 let maxAttempts=10;
 let userAttemptsCounter=0;
 
 // the random number index for the left image
-let leftImageIndex; 
+let firstImageIndex; 
 
 // the random number index for the right image
-let rightImageIndex;
-// the random number index for the second image
 let secondImageIndex;
+// the random number index for the second image
+let thirdImageIndex;
 
 
 
@@ -58,35 +59,45 @@ function generateRandomIndex() {
 // console.log(generateRandomIndex());
 
 
-function renderTwoassets() {
-  // 0=>7
-  leftImageIndex=generateRandomIndex();
-  // 0=>7
-  rightImageIndex=generateRandomIndex();
-  secondImageIndex=  rightImageIndex=generateRandomIndex();
+function renderThreeassets() {
+  // first pic
+  firstImageIndex=generateRandomIndex();
+  // second pic
+  secondImageIndex=generateRandomIndex();
+  // third pic
+  thirdImageIndex= generateRandomIndex();
 
 
-  while (leftImageIndex===rightImageIndex) {
-    rightImageIndex=generateRandomIndex();
-    
-  }
-
+  while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) || (secondImageIndex === thirdImageIndex)) 
   
+  {
+      firstImageIndex=generateRandomIndex();
+      secondImageIndex=generateRandomIndex();
+  }
+/*
+  while((secondImageIndex !== thirdImageIndex))
+  {
+    secondImageIndex=generateRandomIndex();
+  }
+ 
+*/
 
-
-  console.log(Goat.allGoats[leftImageIndex].source);
+  console.log(Goat.allGoats[firstImageIndex].source);
 
   // make the source for the left and right image equal to the random goat source
-  leftImageElement.src=Goat.allGoats[leftImageIndex].source;
+  firstImageElement.src=Goat.allGoats[firstImageIndex].source;
 
-  rightImageElement.src=Goat.allGoats[rightImageIndex].source;
+  secondImageElement.src=Goat.allGoats[secondImageIndex].source;
+  thirdImageElement.src=Goat.allGoats[thirdImageIndex].source;
+  
 }
-renderTwoassets();
+renderThreeassets();
 
 // add event listner
 // container
-leftImageElement.addEventListener('click',handleUserClick);
-rightImageElement.addEventListener('click',handleUserClick);
+firstImageElement.addEventListener('click',handleUserClick);
+secondImageElement.addEventListener('click',handleUserClick);
+thirdImageElement.addEventListener('click',handleUserClick);
 
 
 function handleUserClick(event) {
@@ -109,17 +120,23 @@ function handleUserClick(event) {
   if (userAttemptsCounter<=maxAttempts) {
 
 
-    if (event.target.id==='left-image') {
+    if (event.target.id==='first-image') {
       // the random number
       // Goat.allGoats[5].votes++
-      Goat.allGoats[leftImageIndex].votes++
+      Goat.allGoats[firstImageIndex].votes++
 
-    }else{
-      Goat.allGoats[rightImageIndex].votes++
+    }
+    else if(event.target.id==='second-image')
+    {
+      Goat.allGoats[secondImageIndex].votes++
+    }
+    else if(event.target.id==='third-image')
+    {
+      Goat.allGoats[thirdImageIndex].votes++
     }
 
     console.log(Goat.allGoats);
-    renderTwoassets();
+    renderThreeassets();
 
 
   }else{
@@ -135,8 +152,10 @@ function handleUserClick(event) {
     }
 
     // stop the clicking
-    leftImageElement.removeEventListener('click',handleUserClick);
-    rightImageElement.removeEventListener('click',handleUserClick);
+    firstImageElement.removeEventListener('click',handleUserClick);
+    secondImageElement.removeEventListener('click',handleUserClick);
+    thirdImageElement.removeEventListener('click',handleUserClick);
+
   }
 
 }
