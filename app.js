@@ -10,6 +10,8 @@ let leftImageIndex;
 
 // the random number index for the right image
 let rightImageIndex;
+// the random number index for the second image
+let secondImageIndex;
 
 
 
@@ -26,40 +28,50 @@ function Goat(name,source) {
 Goat.allGoats=[];
 
 
-new Goat('cruisin-goat','images/cruisin-goat.jpg');//0
-new Goat('float-your-goat', 'images/float-your-goat.jpg');//1
-new Goat('goat-away', 'images/goat-away.jpg');//2
-new Goat('goat-out-of-hand', 'images/goat-out-of-hand.jpg');//3
-new Goat('kissing-goat', 'images/kissing-goat.jpg');//4
-new Goat('sweater-goat', 'images/sweater-goat.jpg');//5
-new Goat('sassy-goat', 'images/sassy-goat.jpg');//6
-new Goat('smiling-goat', 'images/smiling-goat.jpg');//7
+new Goat('bag','assets/bag.jpg');//0
+new Goat('banana', 'assets/banana.jpg');//1
+new Goat('bathroom', 'assets/bathroom.jpg');//2
+new Goat('boots', 'assets/boots.jpg');//3
+new Goat('breakfast', 'assets/breakfast.jpg');//4
+new Goat('bubblegum', 'assets/bubblegum.jpg');//5
+new Goat('chair', 'assets/chair.jpg');//6
+new Goat('cthulhu', 'assets/cthulhu.jpg');//7
+
+new Goat('dragon','assets/dragon.jpg');//0
+new Goat('pen', 'assets/pen.jpg');//1
+new Goat('pet-weep', 'assets/pet-weep.jpg');//2
+new Goat('scissors', 'assets/scissors.jpg');//3
+new Goat('shark', 'assets/shark.jpg');//4
+new Goat('sweep', 'assets/sweep.jpg');//5
+new Goat('tauntaun', 'assets/tauntaun.jpg');//6
+new Goat('unicorn', 'assets/unicorn.jpg');//7
+new Goat('usb', 'assets/usb.gif');//5
+new Goat('water-can', 'assets/water-can.jpg');//6
+new Goat('wine-glass', 'assets/wine-glass.jpg');//7
 
 
 function generateRandomIndex() {
-  // 0 => 7
+  // 0 => 21
   return Math.floor(Math.random() * Goat.allGoats.length); 
 }
 
 // console.log(generateRandomIndex());
 
 
-function renderTwoImages() {
+function renderTwoassets() {
   // 0=>7
   leftImageIndex=generateRandomIndex();
   // 0=>7
   rightImageIndex=generateRandomIndex();
+  secondImageIndex=  rightImageIndex=generateRandomIndex();
+
 
   while (leftImageIndex===rightImageIndex) {
     rightImageIndex=generateRandomIndex();
     
   }
 
-  // Goat.allGoats[0];
-  // Goat.allGoats[1];
-  // Goat.allGoats[2];
-  // Goat.allGoats[3];
-  // Goat.allGoats[4];
+  
 
 
   console.log(Goat.allGoats[leftImageIndex].source);
@@ -69,7 +81,7 @@ function renderTwoImages() {
 
   rightImageElement.src=Goat.allGoats[rightImageIndex].source;
 }
-renderTwoImages();
+renderTwoassets();
 
 // add event listner
 // container
@@ -87,7 +99,7 @@ function handleUserClick(event) {
 
   // if the attempts is lower than the max:
   // -add to the votes based on the id
-  // -render two new images
+  // -render two new assets
 
   // ELSE
   // show the list
@@ -107,7 +119,7 @@ function handleUserClick(event) {
     }
 
     console.log(Goat.allGoats);
-    renderTwoImages();
+    renderTwoassets();
 
 
   }else{
