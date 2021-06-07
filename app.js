@@ -57,7 +57,7 @@ new product('unicorn', 'assets/unicorn.jpg');//15
 new product('usb', 'assets/usb.gif');//16
 new product('water-can', 'assets/water-can.jpg');//17
 new product('wine-glass', 'assets/wine-glass.jpg');//18
-new product('dog-dug', 'assets/dog-dug.jpg');//19
+new product('dog-duck', 'assets/dog-duck.jpg');//19
 
 
 function generateRandomIndex() {
@@ -68,7 +68,7 @@ function generateRandomIndex() {
 // console.log(generateRandomIndex());
 
 
-function renderThreeAssets(productArray) {
+function renderThreeAssets() {
   
   // first pic
   firstImageIndex=generateRandomIndex();
@@ -139,7 +139,18 @@ function handleUserClick(event) {
   // if the attempts is lower than the max:
   // -add to the votes based on the id
   // -render two new assets
-
+  if(userAttemptsCounter<=maxAttempts){
+    if(event.target.id='left-image'){
+        Product.allProducts[leftImageIndex].votes++;
+    }
+    else if(event.target.id='mid-image'){
+       Product.allProducts[midImageIndex].votes++;
+   }
+   else{
+       Product.allProducts[rightImageIndex].votes++;
+   }
+   renderThreeImages();
+   }
   // ELSE
   // show the list
   // remove the clicking
@@ -147,7 +158,7 @@ function handleUserClick(event) {
 
   if (userAttemptsCounter<=maxAttempts) {
 
-    btnResult.disabled = true;
+   
 
     if (event.target.id==='first-image') {
       // the random number
@@ -163,6 +174,7 @@ function handleUserClick(event) {
     {
       product.allproducts[thirdImageIndex].votes++
     }
+    btnResult.disabled = true;
     console.log(product.allproducts);
     renderThreeAssets();
     
@@ -171,7 +183,7 @@ function handleUserClick(event) {
     else
     {
       btnResult.disabled = false;
-      imgVotingElement.removeEventListener('click',UserClick);
+      imgVotingElement.removeEventListener('click',handleUserClick);
       
     }
    
