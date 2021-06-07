@@ -1,6 +1,4 @@
 'use srtict'
-
-
 let maxAttempts=25;
 let userAttemptsCounter=0;
 
@@ -11,6 +9,7 @@ let firstImageIndex;
 let secondImageIndex;
 // the random number index for the third image
 let thirdImageIndex;
+let copy=['','',''];
 
 
 // link the DIV images elements declared in HTML with variables in JS for each by id  
@@ -19,7 +18,6 @@ let secondImageElement=document.getElementById('second-image');
 let thirdImageElement=document.getElementById('third-image');
 ///
 let imgVotingElement=document.getElementById('imgVoting');
-
 
 
 let btnResult = document.getElementById("voteResult");
@@ -67,56 +65,50 @@ function generateRandomIndex() {
 
 // console.log(generateRandomIndex());
 
-
-function renderThreeAssets() {
-  
-  // first pic
+function checkDuplicate()
+{
   firstImageIndex=generateRandomIndex();
   // second pic
   secondImageIndex=generateRandomIndex();
   // third pic
   thirdImageIndex= generateRandomIndex();
 
-
-  // While there remain elements to generate
-  /*
-while (currentIndex) {
-
-  // Pick a remaining element…
-  rand = Math.floor(Math.random() * currentIndex--);
-
-  // And swap it with the current element.
-  temp = array[currentIndex];
-  array[currentIndex] = array[rand];
-  array[rand] = temp;
-}
-return array;
-*/
-
-
-  while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) || (secondImageIndex === thirdImageIndex)) 
   
-  {
+    // Check duplicate inside the array itself
+    while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) || (secondImageIndex === thirdImageIndex)) 
+    {
       firstImageIndex=generateRandomIndex();
       secondImageIndex=generateRandomIndex();
-  }
+    }
+}
 
 
-/*
-  while((secondImageIndex !== thirdImageIndex))
-  {
-    secondImageIndex=generateRandomIndex();
-  }
- 
-*/
 
-  console.log(product.allproducts[firstImageIndex].source);
+function renderThreeAssets() {
+  
+    checkDuplicate();
 
+    firstImageElement.src=product.allproducts[firstImageIndex].source;
+    secondImageElement.src=product.allproducts[secondImageIndex].source;
+    thirdImageElement.src=product.allproducts[thirdImageIndex].source;
+      // Check duplicate in the array itself and the previous
+    while ((firstImageElement.src === copy[0]) || (secondImageElement.src === copy[1]) || (thirdImageElement.src === copy[2])) 
+    {
+    // make the source for the first and second and third image equal to the random product source
+    checkDuplicate();
+    firstImageElement.src=product.allproducts[firstImageIndex].source;
+    secondImageElement.src=product.allproducts[secondImageIndex].source;
+    thirdImageElement.src=product.allproducts[thirdImageIndex].source;
+    }
+    
+    copy[0]=firstImageElement.src;
 
-  // make the source for the first and second and third image equal to the random product source
-  firstImageElement.src=product.allproducts[firstImageIndex].source;
-  secondImageElement.src=product.allproducts[secondImageIndex].source;
-  thirdImageElement.src=product.allproducts[thirdImageIndex].source;
+    copy[1]=secondImageElement.src;
+
+    copy[2]=thirdImageElement.src;
+
+    console.log(firstImageElement.src+" render Three Assets");
+
 
 }
 renderThreeAssets();
@@ -139,24 +131,7 @@ function handleUserClick(event) {
   // if the attempts is lower than the max:
   // -add to the votes based on the id
   // -render two new assets
-  if(userAttemptsCounter<=maxAttempts){
-    if(event.target.id='left-image'){
-        Product.allProducts[leftImageIndex].votes++;
-    }
-    else if(event.target.id='mid-image'){
-       Product.allProducts[midImageIndex].votes++;
-   }
-   else{
-       Product.allProducts[rightImageIndex].votes++;
-   }
-   renderThreeImages();
-   }
-  // ELSE
-  // show the list
-  // remove the clicking
-
-
-  if (userAttemptsCounter<=maxAttempts) {
+    if (userAttemptsCounter<=maxAttempts) {
 
    
 
@@ -174,8 +149,10 @@ function handleUserClick(event) {
     {
       product.allproducts[thirdImageIndex].votes++
     }
+
+
     btnResult.disabled = true;
-    console.log(product.allproducts);
+    console.log(product.allproducts+" handle User Click");
     renderThreeAssets();
     
    }
@@ -183,13 +160,9 @@ function handleUserClick(event) {
     else
     {
       btnResult.disabled = false;
-      imgVotingElement.removeEventListener('click',handleUserClick);
-      
+      imgVotingElement.removeEventListener('click',UserClick);      
     }
    
-    
-  
-
   }
 
 
