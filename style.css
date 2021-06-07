@@ -1,6 +1,7 @@
 *{
     box-sizing: border-box;
     text-align: center;
+    
   }
   
   header{
@@ -10,10 +11,34 @@
   
 
   
-  nav{
-    display: inline-block;
+  div{
+    display: block;
+    position: relative;
+    width: 100%;
+    display: table;
   }
+  div ul li
+  {
+    text-decoration: none;
+    color: indigo;
+    text-decoration-style: none;
+    list-style: none;
+  }
+  input
+  {
+   
+      position:absolute;
+      margin-left:-50px;
+      border-top: 5%;
 
+      border-bottom: solid;
+      left:50%;
+      display: table-cell;
+      text-align: center;
+      vertical-align: bottom;
+      background-color: black;
+      color: blanchedalmond;
+  }
   
   main{
     width: 100%;
