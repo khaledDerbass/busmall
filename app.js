@@ -57,7 +57,7 @@ new product('unicorn', 'assets/unicorn.jpg');//15
 new product('usb', 'assets/usb.gif');//16
 new product('water-can', 'assets/water-can.jpg');//17
 new product('wine-glass', 'assets/wine-glass.jpg');//18
-new product('dog-dug', 'assets/dog-dug.jpg');//19
+new product('dog-duck', 'assets/dog-duck.jpg');//19
 
 
 function generateRandomIndex() {
@@ -68,7 +68,7 @@ function generateRandomIndex() {
 // console.log(generateRandomIndex());
 
 
-function renderThreeAssets(productArray) {
+function renderThreeAssets() {
   
   // first pic
   firstImageIndex=generateRandomIndex();
@@ -78,23 +78,10 @@ function renderThreeAssets(productArray) {
   thirdImageIndex= generateRandomIndex();
 
 
-  // While there remain elements to generate
-  /*
-while (currentIndex) {
-
-  // Pick a remaining element…
-  rand = Math.floor(Math.random() * currentIndex--);
-
-  // And swap it with the current element.
-  temp = array[currentIndex];
-  array[currentIndex] = array[rand];
-  array[rand] = temp;
-}
-return array;
-*/
 
 
-  while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) || (secondImageIndex === thirdImageIndex)) 
+  while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) 
+  || (secondImageIndex === thirdImageIndex)) 
   
   {
       firstImageIndex=generateRandomIndex();
@@ -102,13 +89,6 @@ return array;
   }
 
 
-/*
-  while((secondImageIndex !== thirdImageIndex))
-  {
-    secondImageIndex=generateRandomIndex();
-  }
- 
-*/
 
   console.log(product.allproducts[firstImageIndex].source);
 
@@ -139,15 +119,12 @@ function handleUserClick(event) {
   // if the attempts is lower than the max:
   // -add to the votes based on the id
   // -render two new assets
-
-  // ELSE
-  // show the list
-  // remove the clicking
-
+  
+ 
 
   if (userAttemptsCounter<=maxAttempts) {
 
-    btnResult.disabled = true;
+   
 
     if (event.target.id==='first-image') {
       // the random number
@@ -163,15 +140,19 @@ function handleUserClick(event) {
     {
       product.allproducts[thirdImageIndex].votes++
     }
+    btnResult.disabled = true;
     console.log(product.allproducts);
     renderThreeAssets();
     
    }
+ // ELSE
+  // show the list
+  // remove the clicking
 
     else
     {
       btnResult.disabled = false;
-      imgVotingElement.removeEventListener('click',UserClick);
+      imgVotingElement.removeEventListener('click',handleUserClick);
       
     }
    
