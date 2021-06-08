@@ -80,7 +80,8 @@ function renderThreeAssets() {
 
 
 
-  while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) || (secondImageIndex === thirdImageIndex)) 
+  while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) 
+  || (secondImageIndex === thirdImageIndex)) 
   
   {
       firstImageIndex=generateRandomIndex();
