@@ -78,20 +78,6 @@ function renderThreeAssets() {
   thirdImageIndex= generateRandomIndex();
 
 
-  // While there remain elements to generate
-  /*
-while (currentIndex) {
-
-  // Pick a remaining element…
-  rand = Math.floor(Math.random() * currentIndex--);
-
-  // And swap it with the current element.
-  temp = array[currentIndex];
-  array[currentIndex] = array[rand];
-  array[rand] = temp;
-}
-return array;
-*/
 
 
   while ((firstImageIndex === secondImageIndex) || (firstImageIndex === thirdImageIndex) || (secondImageIndex === thirdImageIndex)) 
@@ -102,13 +88,6 @@ return array;
   }
 
 
-/*
-  while((secondImageIndex !== thirdImageIndex))
-  {
-    secondImageIndex=generateRandomIndex();
-  }
- 
-*/
 
   console.log(product.allproducts[firstImageIndex].source);
 
@@ -139,22 +118,8 @@ function handleUserClick(event) {
   // if the attempts is lower than the max:
   // -add to the votes based on the id
   // -render two new assets
-  if(userAttemptsCounter<=maxAttempts){
-    if(event.target.id='left-image'){
-        Product.allProducts[leftImageIndex].votes++;
-    }
-    else if(event.target.id='mid-image'){
-       Product.allProducts[midImageIndex].votes++;
-   }
-   else{
-       Product.allProducts[rightImageIndex].votes++;
-   }
-   renderThreeImages();
-   }
-  // ELSE
-  // show the list
-  // remove the clicking
-
+  
+ 
 
   if (userAttemptsCounter<=maxAttempts) {
 
@@ -179,6 +144,9 @@ function handleUserClick(event) {
     renderThreeAssets();
     
    }
+ // ELSE
+  // show the list
+  // remove the clicking
 
     else
     {
